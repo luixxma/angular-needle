@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+}
+
+#idle {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    display: block;
+    width: 100px;
+    height: 30px;
+}
+
+#hi {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 100px;
+    height: 30px;
+}
+
+#walk {
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    width: 100px;
+    height: 30px;
+}
+
+#jump {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    width: 100px;
+    height: 30px;
+}
+
+#falling {
+    position: absolute;
+    top: 25%;
+    left: 5%;
+    width: 100px;
+    height: 30px;
+}
+
+#dance {
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    width: 100px;
+    height: 30px;
+}
