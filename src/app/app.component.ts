@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, HostListener } from '@angular/core';
 import * as THREE from 'three';
 import { RenderService } from './render.service';
-
+import * as NEEDLE from '@needle-tools/engine';
 import '@needle-tools/engine';
 
 @Component({
@@ -18,6 +18,8 @@ export class AppComponent implements AfterViewInit {
         const needleEngine = document.querySelector("needle-engine");
         needleEngine.addEventListener("loadfinished", async (ev: any) => {
             console.log(ev.detail.context)
+            const context: NEEDLE.Context = ev.detail.context;
+            console.log("ALO PRESIDENTE", context);
 
             this.renderService.renderer = ev.detail.context.renderer;
             this.renderService.scene = ev.detail.context.scene;
