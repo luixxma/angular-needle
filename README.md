@@ -1,31 +1,12 @@
 # CryptoAvatars
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
+This project was generated with [Angular CLI] 16.
 
-## Translation
+to run as PWA you should execute by terminal `npm run start`.
 
-Language files will be placed in  `/assets/i18n`
+if you want to execute as SSR (Server side rendering) first you have to make the build using `npm run build:ssr` and then launch the build using `npm run serve:ssr`.
 
-## Development server
+The web application will load a ThreeD Viewer using Needle and will load a VRM using three-vrm lib inside the Needle scene.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+GLB that its working with SSR: /assets/dresser.glb
+GLB that its not working with SSR: /assets/s4_Street.glb
