@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import { AnimationMixer, Object3D } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { LipsyncService } from '../lipsync.service';
 
 @Component({
     standalone: true,
@@ -30,6 +31,7 @@ export class ThreeDComponent implements AfterViewInit {
     clock = new THREE.Clock();
 
     constructor(
+        private lipsyncService: LipsyncService
     ) {
     }
 
@@ -43,7 +45,28 @@ export class ThreeDComponent implements AfterViewInit {
             this.controls = ev.detail.context.mainCamera.userData.components[2].controls;
 
             this.loadAvatar();
+
+            // this.lipsyncService.startMic();
         });
+
+        requestAnimationFrame(this.animate.bind(this));
+        this.animate();
+    }
+
+    animate() {
+        requestAnimationFrame(this.animate.bind(this));
+        const blendshapes = this.lipsyncService.update();
+
+        if (blendshapes.length === 0)
+            return;
+
+        console.log({ blendshapes });
+
+        this.vrm.expressionManager.setValue("ee", blendshapes[0])
+        this.vrm.expressionManager.setValue("ih", blendshapes[1])
+        this.vrm.expressionManager.setValue("ou", blendshapes[2])
+        this.vrm.expressionManager.setValue("oh", blendshapes[2])
+        this.vrm.expressionManager.update()
     }
 
     async loadAvatar(): Promise<Object3D> {
@@ -67,7 +90,10 @@ export class ThreeDComponent implements AfterViewInit {
 
         this.scene.add(this.vrmModel);
 
-        this.controls.target = new THREE.Vector3(0, 0, 0);
+        this.controls.target = new THREE.Vector3(0, 1.5, 0);
+        this.controls.maxDistance = 1;
+
+        this.lipsyncService.startSample('assets/test2.mp3');
 
         return this.vrmModel;
     }
