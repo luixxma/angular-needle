@@ -57,15 +57,13 @@ export class ThreeDComponent implements AfterViewInit {
         requestAnimationFrame(this.animate.bind(this));
         const blendshapes = this.lipsyncService.update();
 
-        if (blendshapes.length === 0)
+        if (!this.vrm)
             return;
 
-        console.log({ blendshapes });
-
-        this.vrm.expressionManager.setValue("ee", blendshapes[0])
-        this.vrm.expressionManager.setValue("ih", blendshapes[1])
-        this.vrm.expressionManager.setValue("ou", blendshapes[2])
-        this.vrm.expressionManager.setValue("oh", blendshapes[2])
+        this.vrm.expressionManager.setValue("ih", blendshapes[0] || 0)
+        this.vrm.expressionManager.setValue("ih", blendshapes[1] || 0)
+        this.vrm.expressionManager.setValue("ou", blendshapes[2] || 0)
+        this.vrm.expressionManager.setValue("oh", blendshapes[2] || 0)
         this.vrm.expressionManager.update()
     }
 
@@ -93,7 +91,7 @@ export class ThreeDComponent implements AfterViewInit {
         this.controls.target = new THREE.Vector3(0, 1.5, 0);
         this.controls.maxDistance = 1;
 
-        this.lipsyncService.startSample('assets/test2.mp3');
+        this.lipsyncService.startSample('assets/test-english.mp3');
 
         return this.vrmModel;
     }
